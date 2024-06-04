@@ -83,6 +83,8 @@ Compared to the first version of the paper:
 
 [Apache License Version 2.0](./LICENSE)
 
+Adapted from the FRI implementation of [Stark Anatomy](https://github.com/aszepieniec/stark-anatomy) - [Apache License Version 2.0](https://github.com/aszepieniec/stark-anatomy?tab=Apache-2.0-1-ov-file#readme) -  Copyright Alan Szepieniec
+
 Additionally, this repository contains code from:
 
 - [MOSFHET](https://github.com/antoniocgj/MOSFHET): [Apache License Version 2.0](https://github.com/antoniocgj/MOSFHET/blob/main/LICENSE) - Copyright Antonio Guimarães et al. - See their [detailed copyright information](https://github.com/antoniocgj/MOSFHET/tree/main?tab=readme-ov-file#license).
