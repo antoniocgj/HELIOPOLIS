@@ -27,11 +27,10 @@ HELIOPOLIS: Verifiable Computation over Homomorphically Encrypted Data from Inte
 
 ## Running
 
-1) Download this repository and unzip it
+1) Clone this repository
 
 ```
-wget -O HEFRI.zip https://anonymous.4open.science/api/repo/HE_FRI-6285/zip
-unzip HEFRI.zip -d HEFRI
+git clone https://github.com/antoniocgj/HELIOPOLIS.git
 ```
 
 2) Run `python3 test_fri.py -h` to see the following help text:
