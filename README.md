@@ -20,7 +20,7 @@ HELIOPOLIS: Verifiable Computation over Homomorphically Encrypted Data from Inte
 
 
 ## Requirements
-- Basic development packages (On Debian-based systems: `sudo apt install make gcc unzip cmake`)
+- Basic development packages (On Debian-based systems: `sudo apt install make gcc cmake`)
 - Python 3 (Tested on Python 3.10.12)
 - GCC (Tested on GCC 11.4.0)
 - Strongly recommended: A processor with [AVX-512 IFMA](https://en.wikipedia.org/wiki/Advanced_Vector_Extensions#AVX-IFMA) (Tested on Intel i7-1165G7 and Intel Xeon 8375C). We have added a compilation option that does not require it, but please be aware that it is mostly unoptimized and may be more unstable. 
@@ -52,13 +52,17 @@ options:
                         Number of threads for the prover (default=2)
 ```
 
-The Python code will compile the C library during the first execution.
+The Python code will compile the C library during the first execution. 
+
+To recompile the code (in case you want to run it in another machine, for example), delete the build:
+```
+rm -rf c_lib/lib/libfric.so
+rm -rf c_lib/src/third-party/hexl/build/
+```
 
 ### Execution examples:
 
 1. Parameter set FRI<sub>0</sub> with 4 threads for input of size 2<sup>11</sup>:
-
-Input:
 
 ```python3 test_fri.py -i 11 -e 2 -m 102 -t 4```
 
@@ -68,6 +72,15 @@ Input:
    
 ```python3 test_fri.py -i 7 -e 16 -m 26 -t 4```
 
+
+> [!WARNING]
+> The optimized version of this implementation requires [AVX-512 IFMA](https://en.wikipedia.org/wiki/Advanced_Vector_Extensions#AVX-IFMA). It should be significantly slower and possibly unstable without it (but it should still work).
+
+## Code structure
+- `test_fry.py`: main script, it instantiates and runs FRI.
+- `friC.py`: ctypes wrapper to call optimized (C/CPP-implemented) functions
+- other Python scripts: high-level implementations of HE-FRI and all subprocedures required to implement it (Merkle commitments, NTTs, Fiat-Shamir...).
+- `c_lib/src`: optimized C/CPP subroutines used by the Python scripts. It also contains a fully optimized version of HE-FRI's verification (`c_lib/src/verifier.cpp`).
 
 ## Implementation changelog
 
